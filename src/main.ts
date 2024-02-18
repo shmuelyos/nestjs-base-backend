@@ -11,7 +11,7 @@ async function bootstrap() {
   app.use(helmet());
   app.use(compression());
   app.enableCors({
-    origin: process.env.FRONTEND_URL,
+    origin:configService.get('FRONTEND_URL')
   });
 
   await app.listen(configService.get('PORT') || 3000);

@@ -1,8 +1,15 @@
+//auth.controller
 import { Controller, Get, UseGuards, Req } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
+
+    @Get()
+    getHello(): string {
+        return "/auth";
+    }
+
     @Get('google')
     @UseGuards(AuthGuard('google'))
     async googleAuth(@Req() req) {}
