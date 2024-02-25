@@ -20,6 +20,7 @@ async function bootstrap() {
                 secure: configService.get('NODE_ENV') === 'production',
                 maxAge: parseInt(configService.get('SESSION_EXPIRATION')),
                 httpOnly: true,
+                sameSite: 'Lax',
             },
         })
     );
