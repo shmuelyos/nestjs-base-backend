@@ -43,6 +43,9 @@ async function bootstrap() {
         credentials: true,
     });
 
+    const httpAdapter = app.getHttpAdapter().getInstance();
+    // Trust the first proxy
+    httpAdapter.set('trust proxy', 1);
 
     await app.listen(configService.get('PORT'));
 }
