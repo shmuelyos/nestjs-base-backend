@@ -17,10 +17,10 @@ async function bootstrap() {
             resave: false,
             saveUninitialized: false,
             cookie: {
-                secure: configService.get('NODE_ENV') === 'production',
                 maxAge: parseInt(configService.get('SESSION_EXPIRATION')),
-                httpOnly: true,
                 sameSite: configService.get('SAME_SITE'),
+                httpOnly: configService.get('HTTP_ONLY'),
+                secure: configService.get('SECURE'),
             },
         })
     );
@@ -40,6 +40,7 @@ async function bootstrap() {
         origin: configService.get('FRONTEND_URL'),
         credentials: true,
     });
+
 
     await app.listen(configService.get('PORT'));
 }
