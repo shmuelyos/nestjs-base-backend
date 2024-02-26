@@ -18,9 +18,11 @@ async function bootstrap() {
             saveUninitialized: false,
             cookie: {
                 maxAge: parseInt(configService.get('SESSION_EXPIRATION')),
-                sameSite: configService.get('SAME_SITE'),
-                httpOnly: configService.get('HTTP_ONLY'),
-                secure: configService.get('SECURE'),
+                sameSite: configService.get('SAME_SITE') as 'Lax' | 'Strict' | 'None',
+                httpOnly: configService.get('HTTP_ONLY') == 'true', // Ensure this is a boolean
+                secure: configService.get('SECURE') == 'true', // Ensure this is a boolean
+                domain: configService.get('COOKIE_DOMAIN'), // You might need to add this for production
+                path: '/', // You might want to set this explicitly
             },
         })
     );
