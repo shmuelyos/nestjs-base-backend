@@ -1,24 +1,13 @@
-import {Controller, Get, Res} from '@nestjs/common';
-import {AppService} from './app.service';
-import { Response } from 'express'; // This should be imported from 'express'
+import { Controller, Get, Req, UseGuards } from "@nestjs/common";
+import { AuthenticatedGuard } from "./auth/auth.guard";
 
 @Controller()
 export class AppController {
-    constructor(private readonly appService: AppService) {
-    }
 
-    @Get()
-    getHello(): string {
-        return this.appService.getHello();
-    }
+  @UseGuards(AuthenticatedGuard)
+  @Get()
+  getHello(@Req() req) {
+    return `user: ${req.session.email} is authenticated`;
+  }
 
-    @Get('test-cookies')
-    testCookies(@Res() res: Response) {
-        res.cookie('TestCookie', 'delicious cookies 123...', {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'strict',
-        });
-        res.send('Cookie has been set');
-    }
 }

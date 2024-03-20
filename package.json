@@ -26,6 +26,8 @@
     "@nestjs/mongoose": "^10.0.4",
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.0.0",
+    "@types/compression": "^1.7.5",
+    "@types/express-session": "^1.18.0",
     "@types/passport-google-oauth20": "^2.0.14",
     "compression": "^1.7.4",
     "connect-mongo": "^5.1.0",
